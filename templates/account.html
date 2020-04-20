@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2 align="center">#Include Quiz-Update Profile</h2>
+<div class="imgcontainer">
+  <img src="{{ url_for('static', filename='image/img_avatar2.png') }}" alt="Avatar" class="avatar">
+</div>
+<form class="modal-content" action="{{ url_for('updateaccount') }}" method="post">
+  <label for="mobno"><b>Mobile Number</b></label>
+  <input type="text" value="{{ dbrows.playerid }}" name="mobno" id="mobno" required maxlength="10" pattern="\d{10}"  readonly>
+
+  <label for="uname"><b>Name</b></label>
+  <input type="text" value="{{ dbrows.playername }}" name="uname" required maxlength="20">
+
+  <label for="email"><b>E-Mail</b></label>
+  <input type="email" value="{{ dbrows.email }}" name="email" required>
+
+  <label for="competition"><b>Select Default Competition</b></label>            
+  <select name="competition" id="selCompetion">               
+      {% for item in dbcompetitions %}                    
+          {% if competitionselected == item[0] %}
+            <option value="{{ item[0] }}" selected="selected">{{item[0]}}</option>
+          {% else %}
+            <option value="{{ item[0] }}">{{item[0]}}</option>
+          {% endif %}
+      {% endfor %}
+  </select>
+  <br>
+
+  <button type="submit">Update</button>
+  <br>
+  <label style="color: red;">
+      {{ accountmessage }}
+  </label>
+</form>
+
+{% endblock %}

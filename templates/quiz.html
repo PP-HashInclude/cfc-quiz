@@ -1,0 +1,141 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <form class="modal-content" action="{{ url_for('answersave') }}" method="POST" id="frmQuestion">
+    <h3>Welcome {{ playername }}</h3>
+    <div class="imgcontainer">
+      <img src="{{ url_for('static', filename='image/img_avatar2.png') }}" alt="Avatar" class="avatar">
+    </div>
+    <br>
+    <br>
+    <label style="color: red;">
+      {{ questionmessage }}
+    </label>
+    {% if dbqna.qid %}
+      <div class="row">
+          <label for="validtill" class="labelcenter" id="lblTime"><b>Time Remaining: {{dbqna.validtill}}</b></label>
+
+          <input type="hidden" name="qid" value="{{dbqna.qid}}">
+          <input type="hidden" name="qdesc" value="{{dbqna.qdesc}}">
+          <input type="hidden" name="points" value="{{dbqna.points}}">
+          <input type="hidden" name="negativepoints" value="{{dbqna.negativepoints}}">
+          <input type="hidden" id="qno" name="qno" value="">
+          
+          <label class="labelcenternocolor">Points: {{dbqna.points}}</label>
+          <p style="border-style:ridge;">{{dbqna.qid}}: {{dbqna.qdesc}}</p>
+
+          {% if dbqna.responsechoice == dbqna.ch1  %}
+            <input type="radio" name="choice" value="{{ dbqna.ch1 }}" required checked>
+          {% else %}
+            <input type="radio" name="choice" value="{{ dbqna.ch1 }}" required>
+          {% endif %}
+          <label for="choice">{{ dbqna.ch1 }}</label><br>
+
+          {% if dbqna.responsechoice == dbqna.ch2  %}
+            <input type="radio" name="choice" value="{{ dbqna.ch2 }}" required checked>
+          {% else %}
+            <input type="radio" name="choice" value="{{ dbqna.ch2 }}" required>
+          {% endif %}
+          <label for="choice">{{ dbqna.ch2 }}</label><br>
+
+          {% if dbqna.responsechoice == dbqna.ch3  %}
+            <input type="radio" name="choice" value="{{ dbqna.ch3 }}" required checked>
+          {% else %}
+            <input type="radio" name="choice" value="{{ dbqna.ch3 }}" required>
+          {% endif %}
+          <label for="choice">{{ dbqna.ch3 }}</label><br>
+
+          {% if dbqna.responsechoice == dbqna.ch4  %}
+            <input type="radio" name="choice" value="{{ dbqna.ch4 }}" required checked>
+          {% else %}
+            <input type="radio" name="choice" value="{{ dbqna.ch4 }}" required>
+          {% endif %}
+          <label for="choice">{{ dbqna.ch4 }}</label>
+          <br>
+          <label class="labelcenternocolor">
+            {{dbqna.qid}} of {{ maxqcount }}
+          </label>
+          <br>
+          <div style="background-color: lightgray;">
+            <strong>Questions</strong>
+            <br>
+            {% for item in dbqlist %}
+              {% if item[1] == "saved" %}
+                <a id="lnkGreen" href="{{ url_for('thisQuestion', qno=item[0]) }}" class="btn-success">{{ item[0] }}</a>
+              {% else %}
+                <a id="lnkRed" href="{{ url_for('thisQuestion', qno=item[0]) }}" class="btn-danger">{{ item[0] }}</a>
+              {% endif %}
+            {% endfor %}
+          </div>    
+      </div>
+      <div class="row">
+        <div class="column">
+          <button type="button" id="btnSave" onclick="submitForm('btnSave');">Save</button>
+        </div>
+        <div class="column">
+          <button type="button" id="btnSubmit" onclick="submitForm('btnSubmit');">Submit All</button>
+        </div>
+      </div>
+    {% endif %}
+  </form>
+  {% if dbqna.qid %}
+    <script>
+      //x = document.getElementById("lblTime");
+
+      // Set the date we're counting down to
+      var countDownDate = new Date("{{ dbqna.validtill }}");
+      
+      // Update the count down every 1 second
+      var x = setInterval(function() {
+      
+        // Get today's date and time
+        var now = new Date().getTime();
+          
+        // Find the distance between now and the count down date
+        var distance = countDownDate - now;
+          
+        // Time calculations for days, hours, minutes and seconds
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+          
+        // Output the result in an element with id="demo"
+        document.getElementById("lblTime").innerHTML = "<b>Time Remaining: " + days + "d " + hours + "h "
+        + minutes + "m " + seconds + "s </b>";
+          
+        // If the count down is over, write some text 
+        if (distance < 0) {
+          document.getElementById("btnSubmit").disabled = true;
+          document.getElementById("btnSave").disabled = true;
+          clearInterval(x);
+          document.getElementById("lblTime").innerHTML = "EXPIRED";
+          document.getElementById("lblTime").className = "labelcenterblink";
+        }
+      }, 1000);
+    </script>
+  {% endif %}
+<script>
+    function submitForm(id) {
+      var ctrl = document.getElementById(id);
+
+      switch (id) {
+        case "btnSave":
+          document.getElementById("frmQuestion").action = "{{ url_for('answersave') }}";
+          document.getElementById("frmQuestion").submit();
+          break;
+        case "btnSubmit":
+          var r = confirm("Do you want submit all responses. You cannot change responses after Submit!");
+          if (r == true) {
+            document.getElementById("frmQuestion").action = "{{ url_for('submit') }}";
+            document.getElementById("frmQuestion").submit();
+          }
+          break;
+        default:
+          document.getElementById("frmQuestion").action = "{{ url_for('answersave') }}";
+          document.getElementById("frmQuestion").submit();
+          break;
+      }
+    }
+    </script>
+{% endblock %}

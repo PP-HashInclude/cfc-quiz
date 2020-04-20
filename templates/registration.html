@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2 align="center">#Include Quiz-Signup</h2>
+  <div class="imgcontainer">
+    <img src="{{ url_for('static', filename='image/img_avatar2.png') }}" alt="Avatar" class="avatar">
+  </div>
+  <form class="modal-content" action="{{ url_for('register') }}" method="post">
+    <label for="competition"><b>Competition</b></label>            
+    <select name="competition" id="selCompetion">               
+        {% for item in dbrows %}                    
+            {% if competitionselected == item[0] %}
+              <option value="{{ item[0] }}" selected="selected">{{item[0]}}</option>
+            {% else %}
+              <option value="{{ item[0] }}">{{item[0]}}</option>
+            {% endif %}
+        {% endfor %}
+    </select>
+    <br>
+    <br>
+    <label for="uname"><b>Name</b></label>
+    <input type="text" placeholder="Enter your name" name="uname" required maxlength="20">
+
+    <label for="email"><b>E-Mail</b></label>
+    <input type="email" placeholder="Enter your email" name="email" required>
+    <br>
+    <br>
+    <label for="mobno"><b>Mobile Number</b></label>
+    <input type="text" placeholder="Enter 10 digit mobile number" name="mobno" id="mobno" required maxlength="10" pattern="\d{10}">
+
+    <label for="psw"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="psw" required maxlength="20">
+    
+    <button type="submit">Sign Up</button>
+    <br>
+    <label style="color: red;">
+        {{ registrationmessage }}
+    </label>
+  </form>
+{% endblock %}

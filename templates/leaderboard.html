@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<table>
+    <tr>
+      <th>Name</th>
+      <th>Competition</th>
+      <th>Question</th>
+      <th>Score</th>
+    </tr>
+    {% for item in dbrows %}
+        <tr>
+            <td>{{ item[0] }}</td>
+            <td>{{ item[1] }}</td>
+            <td>{{ item[2] }}</td>
+            <td>{{ item[3] }}</td>
+        </tr>
+    {% endfor %}
+</table>
+<label style="color: red;">
+    {{ reportMessage }}
+</label>
+
+{% endblock %}

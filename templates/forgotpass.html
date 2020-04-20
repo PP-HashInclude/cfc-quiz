@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2 align="center">#Include Quiz-Reset Password</h2>
+  <div class="imgcontainer">
+    <img src="{{ url_for('static', filename='image/img_avatar2.png') }}" alt="Avatar" class="avatar">
+  </div>
+  <form class="modal-content" action="{{ url_for('genotp') }}" method="post">
+    <label style="color: red;">
+        Enter your Mobile Number to reset password.
+    </label>
+    <p>
+    <label for="mobno"><b>Mobile Number</b></label>
+    <input type="text" name="mobno" id="mobno" required maxlength="10" pattern="\d{10}" >
+    <button type="submit">Reset Password</button>
+    </p>
+    </form>
+{% endblock %}
