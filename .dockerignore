@@ -1,10 +1,5 @@
 .gitignore
 LICENSE
-*.md
+README.md
 vcap-local.json
-.git
-__pycache__
-*.pyc
-*.pyo
-*.pyd
-.Python
+.vscode

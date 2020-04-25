@@ -1,5 +1,6 @@
 from common import config
 import sqlite3
+import csv
 
 dbfile = config.getdbfile()
 
@@ -668,3 +669,41 @@ def IsOTPValid(mobileNo, usrotp):
         print("IsOTPValid:", ex)
     
     return isOtpOK
+
+def import_csv_data(csv_file_name, table_name, isHeaderRowPresent=True):
+    isImportOK = False
+
+    try:
+        # reading csv file 
+        with open(csv_file_name, 'r') as csvfile:
+            # initializing database
+            conn, cur = opendb()
+            columnNames = []
+            sql = ""
+
+            # creating a csv reader object 
+            csvreader = csv.reader(csvfile) 
+            
+            # extracting field names through first row 
+            if isHeaderRowPresent:
+                columnNames = next(csvreader) 
+
+            # extracting each data row one by one 
+            for row in csvreader:
+                sql = "INSERT INTO " + table_name + "(" + ', '.join(column for column in columnNames) + ") \
+                            VALUES (" + ', '.join("?" for column in columnNames) + ")"
+                
+                data_tuple = tuple(row)
+
+                cur.execute(sql, data_tuple)
+                    
+            conn.commit()
+
+            cur.close()
+            conn.close()
+
+            isImportOK = True
+    except Exception as e:
+        print("csv import error!", e)
+    
+    return isImportOK

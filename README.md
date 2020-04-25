@@ -1,4 +1,4 @@
-# Getting Started with Quiz Python App on IBM Cloud
+# Getting Started with Python on IBM Cloud
 
 To get started, we'll take you through a sample Python Flask app, help you set up a development environment, deploy to IBM Cloud and add a Cloudant database.
 
@@ -16,7 +16,7 @@ You'll need the following:
 
 Now you're ready to start working with the app. Clone the repo and change to the directory where the sample app is located.
   ```
-git clone https://github.com/IBM-Cloud/get-started-python
+git clone https://github.com/PP-HashInclude/cfc-quiz
 cd get-started-python
   ```
 
@@ -33,7 +33,7 @@ pip install -r requirements.txt
 
 Run the app.
   ```
-python hello.py
+python main.py
   ```
 
  View your app at: http://localhost:5000
@@ -45,7 +45,7 @@ To deploy to IBM Cloud, it can be helpful to set up a manifest.yml file. One is 
 The manifest.yml includes basic information about your app, such as the name, how much memory to allocate for each instance and the route. In this manifest.yml **random-route: true** generates a random route for your app to prevent your route from colliding with others.  You can replace **random-route: true** with **host: myChosenHostName**, supplying a host name of your choice. [Learn more...](https://console.bluemix.net/docs/manageapps/depapps.html#appmanifest)
  ```
  applications:
- - name: QuizAppPython
+ - name: GetStartedQuiz
    random-route: true
    memory: 128M
  ```
@@ -74,7 +74,7 @@ Login to your IBM Cloud account
 cf login
   ```
 
-From within the *quiz* directory push your app to IBM Cloud
+From within the *get-started-python* directory push your app to IBM Cloud
   ```
 cf push
   ```

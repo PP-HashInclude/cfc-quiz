@@ -1,5 +1,5 @@
 """
-Quiz app for running Python apps on Bluemix
+Hello World app for running Python apps on Bluemix
 """
 
 # Always prefer setuptools over distutils
@@ -15,10 +15,10 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
 setup(
-    name='quiz-app-python',
+    name='py-quiz',
     version='1.0.0',
-    description='Quiz app on Bluemix - Call for Code',
+    description='Quiz app on Bluemix',
     long_description=long_description,
-    url='https://github.com/IBM-Bluemix/quiz-app-python',
+    url='https://github.com/PP-HashInclude/cfc-quiz',
     license='Apache-2.0'
 )

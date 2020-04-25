@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h2 align="center">#Include Quiz-Signup</h2>
+  <h2 align="center">#Ed Quiz-Signup</h2>
   <div class="imgcontainer">
     <img src="{{ url_for('static', filename='image/img_avatar2.png') }}" alt="Avatar" class="avatar">
   </div>
   <form class="modal-content" action="{{ url_for('register') }}" method="post">
-    <label for="competition"><b>Competition</b></label>            
+    <label for="competition"><b>Subject</b></label>
     <select name="competition" id="selCompetion">               
         {% for item in dbrows %}                    
             {% if competitionselected == item[0] %}

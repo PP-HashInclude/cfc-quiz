@@ -1,29 +1,24 @@
-#FROM python:2-alpine
-FROM python:3.6
+FROM python:2-alpine
+
+COPY ./requirements.txt /app/requirements.txt
+COPY ./common/ /app/common/
+COPY ./controllers/ /app/controllers/
+COPY ./data/ /app/data/
+COPY ./repositories/ /app/repositories/
+COPY ./static/ /app/static/
+COPY ./templates/ /app/templates/
 
 WORKDIR /app
 
-COPY ./requirements.txt ./
-COPY ./common/. ./common/
-COPY ./controllers/. ./controllers/
-COPY ./data/. ./data/
-COPY ./repositories/. ./repositories/
-COPY ./static/. ./static/
-COPY ./templates/. ./templates/
-
-RUN pip3 install -r requirements.txt
-
-#RUN apk --update add python3 py-pip openssl ca-certificates py-openssl wget bash linux-headers
-#RUN apk --update add --virtual build-dependencies libffi-dev openssl-dev python3-dev py-pip build-base \
-#  && pip3 install --upgrade pip \
-#  && pip3 install --upgrade pipenv\
-#  && pip3 install --upgrade -r /app/requirements.txt\
-#  && apk del build-dependencies
+RUN apk --update add python py-pip openssl ca-certificates py-openssl wget bash linux-headers
+RUN apk --update add --virtual build-dependencies libffi-dev openssl-dev python-dev py-pip build-base \
+  && pip install --upgrade pip \
+  && pip install --upgrade pipenv\
+  && pip install --upgrade -r /app/requirements.txt\
+  && apk del build-dependencies
 
 COPY . /app
 
-EXPOSE 5000
-
-ENTRYPOINT [ "python3" ]
+ENTRYPOINT [ "python" ]
 
 CMD [ "main.py" ]

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h2 align="center">#Include Quiz-Update Profile</h2>
+<h2 align="center">#Ed Quiz-Update Profile</h2>
 <div class="imgcontainer">
   <img src="{{ url_for('static', filename='image/img_avatar2.png') }}" alt="Avatar" class="avatar">
 </div>
@@ -15,7 +15,7 @@
   <label for="email"><b>E-Mail</b></label>
   <input type="email" value="{{ dbrows.email }}" name="email" required>
 
-  <label for="competition"><b>Select Default Competition</b></label>            
+  <label for="competition"><b>Select Default Subject</b></label>            
   <select name="competition" id="selCompetion">               
       {% for item in dbcompetitions %}                    
           {% if competitionselected == item[0] %}

@@ -1,5 +1,5 @@
 ---
 applications:
- - name: QuizAppPython
+ - name: pyquiz
    random-route: true
    memory: 128M

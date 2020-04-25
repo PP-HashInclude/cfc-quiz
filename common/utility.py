@@ -57,3 +57,9 @@ def generateOTP():
 		OTP += digits_in_otp[math.floor(random.random() * 10)]
 
 	return OTP
+
+def allowed_file(filename):
+    extension = config.get("DB_IMPORT", "ALLOWED_EXTENSIONS")
+    allowed_extensions = {extension}
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in allowed_extensions

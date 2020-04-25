@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2 align="center">#Ed Quiz-Administration</h2>
+  <form class="modal-content" action="{{ url_for('admin') }}" method="post" enctype=multipart/form-data>
+    <div class="column80">
+      <label for="table"><b>Select Table:</b></label>
+      <select name="tablename" id="selTable">               
+          <option value="Competition" selected="selected">Subject</option>
+          <option value="QuestionBank">Question Bank</option>
+      </select>
+      <br>
+      <br>
+      <label for="file"><b>Select CSV data file</b></label>
+      <input type=file name=file>
+      <br>
+      <br>
+      <input type="checkbox" checked name="chkHeader" value="Header Record">
+      <label for="chkHeader"><b>Header Record</b></label>
+      <button type="submit">Import</button>
+    </div>
+    <div class="column20">
+      <label for="templates"><b>CSV Data Templates</b></label>
+      <br>
+      <a href="https://cloud-object-storage-q2-cos-standard-by6.s3.jp-tok.cloud-object-storage.appdomain.cloud/Competition.csv">Subject</a>
+      <br>
+      <a href="https://cloud-object-storage-q2-cos-standard-by6.s3.jp-tok.cloud-object-storage.appdomain.cloud/QuestionBank.csv">Question Bank</a>
+    </div>
+  </form>
+  {% endblock %}

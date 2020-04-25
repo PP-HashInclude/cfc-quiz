@@ -5,7 +5,7 @@
     {{ competitionmessage }}
   </label>
 <form class="modal-content" action="{{ url_for('competitionanswers') }}" method="POST">
-    <label for="competition"><b>Select Competition</b></label>
+    <label for="competition"><b>Select Subject</b></label>
     <select name="selCompetition" id="selCompetition">
         <option value=""></option>
         {% for item in dbcompetitionrows %}
