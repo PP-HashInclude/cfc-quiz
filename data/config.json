@@ -8,7 +8,7 @@
     },
     "BULKSMS_URL": {
       "user": "prasant",
-      "password": 9989374,
+      "password": ,
       "sender": "HIQUIZ",
       "type": 3
     },
@@ -19,11 +19,11 @@
       "ALLOWED_EXTENSIONS": "csv"
     },
     "IBM_CLOUD": {
-      "COS_API_KEY": "Yt04dMb974XD8TgW-gSBNKTEowzdDHtyWb_N0pmP-4ow",
-      "COS_IAM_ROLE_CRN": "crn:v1:bluemix:public:iam::::serviceRole:Writer",
-      "COS_IAM_SERVICEID_CRN": "crn:v1:bluemix:public:iam-identity::a/7d59fa5c7a8c4443baf277b209b876a1::serviceid:ServiceId-bd2c8581-b45a-4d93-bf97-cdf6ce523085",
+      "COS_API_KEY": "",
+      "COS_IAM_ROLE_CRN": "",
+      "COS_IAM_SERVICEID_CRN": "",
       "IBM_AUTH_ENDPOINT": "https://iam.cloud.ibm.com/identity/token",
-      "ENDPOINT_URL": "https://s3.jp-tok.cloud-object-storage.appdomain.cloud",
-      "BUCKET_NAME": "cloud-object-storage-q2-cos-standard-by6"
+      "ENDPOINT_URL": "",
+      "BUCKET_NAME": ""
     }
   }
