@@ -1,6 +1,6 @@
 Flask>=1.0.0
 flask_session
-werkzeug==0.16.1
+werkzeug==2.2.3
 db-sqlite3
 datetime
 requests
